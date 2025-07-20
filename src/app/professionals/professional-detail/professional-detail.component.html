@@ -1,0 +1,14 @@
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ professional.name }}</h3>
+    </div>
+    <div class="panel-body">
+        <img [src]="professional.imageUrl" style="width: 100px" class="pull-left img-responsive img-thumbnail">
+        <p><strong>Email:</strong> {{ professional.email }}</p>
+        <p><strong>Teléfono:</strong> {{ professional.phone }}</p>
+        <p><strong>Especialidad:</strong> {{ professional.specialty }}</p>
+        <button class="btn btn-warning">Editar</button>
+        <button class="btn btn-danger">Eliminar</button>
+    </div>
+</div>
+

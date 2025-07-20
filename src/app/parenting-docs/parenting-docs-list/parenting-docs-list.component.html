@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+    <div class="panel-heading">Parents Advices</div>
+    <div class="panel-body">
+        <ul class="list-group">
+        <li
+            *ngFor="let doc of parentingDocs"
+            class="list-group-item"
+        >
+            <h4>{{ doc.title }}</h4>
+            <p>{{ doc.description }}</p>
+            <a [href]="doc.url" target="_blank">Ver más</a>
+        </li>
+        </ul>
+    </div>
+</div>
