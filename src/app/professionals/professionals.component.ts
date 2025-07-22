@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Professional } from './professional.model';
+
 
 @Component({
   selector: 'dadlife-professionals',
@@ -7,5 +9,9 @@ import { Component } from '@angular/core';
   styleUrl: './professionals.component.css'
 })
 export class ProfessionalsComponent {
+  selectedProfessional!: Professional;
 
+  onProfessionalSelected(prof: Professional) {
+    this.selectedProfessional = prof;
+  }
 }
