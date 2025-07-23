@@ -8,12 +8,16 @@ import { ParentingDocService } from '../parenting-doc.service';
   templateUrl: './parenting-docs-list.component.html',
   styleUrl: './parenting-docs-list.component.css'
 })
-export class ParentingDocsListComponent implements OnInit {
+export class ParentingDocListComponent implements OnInit {
   parentingDocs: ParentingDoc[] = [];
 
   constructor(private docService: ParentingDocService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.parentingDocs = this.docService.getParentingDocs();
+
+    this.docService.parentingDocChangedEvent.subscribe((docs: ParentingDoc[]) => {
+      this.parentingDocs = docs;
+    });
   }
 }

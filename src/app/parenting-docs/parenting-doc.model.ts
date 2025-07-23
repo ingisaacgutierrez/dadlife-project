@@ -1,6 +1,9 @@
-export interface ParentingDoc {
-    id: string;
-    title: string;
-    description: string;
-    url: string;
-}
+export class ParentingDoc {
+    constructor(
+        public id: string,
+        public title: string,
+        public description: string,
+        public url: string
+    ) {}
+    }
+

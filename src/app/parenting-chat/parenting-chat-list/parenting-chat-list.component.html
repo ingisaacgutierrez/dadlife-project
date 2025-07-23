@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Parenting Chat</h3>
+    </div>
+    <div class="panel-body">
+        <dadlife-parenting-chat-edit (chatAdded)="onChatAdded($event)"></dadlife-parenting-chat-edit>
+
+        <dadlife-parenting-chat-item
+        *ngFor="let chat of chats"
+        [chat]="chat">
+        </dadlife-parenting-chat-item>
+    </div>
+</div>
+
+
+

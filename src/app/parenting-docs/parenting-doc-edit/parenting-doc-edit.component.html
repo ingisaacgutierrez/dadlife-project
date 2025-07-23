@@ -1,1 +1,48 @@
-<p>parenting-doc-edit works!</p>
+<div class="panel panel-default mt-3">
+    <div class="panel-heading">
+        <h3 class="panel-title">Agregar Nuevo Consejo</h3>
+    </div>
+    <div class="panel-body">
+        <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <div class="form-group">
+            <label for="title">Título</label>
+            <input
+            type="text"
+            id="title"
+            name="title"
+            class="form-control"
+            ngModel
+            required
+            />
+        </div>
+
+        <div class="form-group">
+            <label for="description">Descripción</label>
+            <textarea
+            id="description"
+            name="description"
+            class="form-control"
+            rows="3"
+            ngModel
+            required
+            ></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="url">URL</label>
+            <input
+            type="text"
+            id="url"
+            name="url"
+            class="form-control"
+            ngModel
+            required
+            />
+        </div>
+
+        <button class="btn btn-success" type="submit">Guardar</button>
+        <button class="btn btn-danger" type="button" (click)="f.reset()">Cancelar</button>
+        </form>
+    </div>
+</div>
+
