@@ -15,6 +15,10 @@ export class ParentingChatListComponent implements OnInit {
   constructor(private chatService: ParentingChatService) {}
 
   ngOnInit() {
+    this.fetchChats();
+  }
+
+  fetchChats() {
     this.chatService.getChats().subscribe((data) => {
       this.chats = data;
     });
@@ -26,4 +30,3 @@ export class ParentingChatListComponent implements OnInit {
     });
   }
 }
-

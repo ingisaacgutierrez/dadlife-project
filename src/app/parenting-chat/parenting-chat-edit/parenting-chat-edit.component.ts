@@ -14,17 +14,26 @@ export class ParentingChatEditComponent {
   constructor(private chatService: ParentingChatService) {}
 
   onSubmit(form: NgForm) {
-    if (form.invalid) return;
+    if (!form.valid) return;
 
-    const newChat = new ParentingChat(
-      new Date().getTime().toString(),
-      form.value.topic,
-      form.value.message,
-      form.value.sender
-    );
+    console.log('[✅ Enviando al backend]', form.value); 
 
-    this.chatService.addChat(newChat).subscribe(() => {
-      form.resetForm();
+    const newChat: ParentingChat = {
+      subject: form.value.subject,
+      msgText: form.value.msgText,
+      sender: form.value.sender,
+    };
+
+    this.chatService.addChat(newChat).subscribe({
+      next: (res) => {
+        console.log('✅ Mensaje guardado', res);
+        form.reset();
+      },
+      error: (err) => {
+        console.error('❌ Error al guardar', err);
+      }
     });
   }
+  
+  
 }

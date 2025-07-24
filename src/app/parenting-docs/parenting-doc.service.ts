@@ -1,30 +1,35 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { ParentingDoc } from './parenting-doc.model';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ParentingDocService {
+  private apiUrl = 'http://localhost:3000/api/parenting-docs';
+
   parentingDocChangedEvent = new Subject<ParentingDoc[]>();
 
-  private parentingDocs: ParentingDoc[] = [
-    new ParentingDoc('1', 'Cómo calmar a un bebé que llora', 'Consejos prácticos para padres primerizos.', 'https://padres-bebes.com/calma'),
-    new ParentingDoc('2', 'Rutinas de sueño para bebés', 'Guía sobre horarios y técnicas para mejorar el sueño.', 'https://padres-bebes.com/sueno')
-  ];
+  constructor(private http: HttpClient) {}
 
-  getParentingDocs(): ParentingDoc[] {
-    return this.parentingDocs.slice(); // copia
+  getParentingDocs(): Observable<ParentingDoc[]> {
+    return this.http.get<ParentingDoc[]>(this.apiUrl);
   }
 
-  getParentingDoc(id: string): ParentingDoc | undefined {
-    return this.parentingDocs.find(doc => doc.id === id);
+  addParentingDoc(doc: ParentingDoc): Observable<ParentingDoc> {
+    return this.http.post<ParentingDoc>(this.apiUrl, doc);
   }
 
-  addParentingDoc(newDoc: ParentingDoc) {
-    this.parentingDocs.push(newDoc);
-    this.parentingDocChangedEvent.next(this.getParentingDocs());
+  updateParentingDoc(id: string, doc: ParentingDoc): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/${id}`, doc);
+  }
+
+  deleteParentingDoc(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }
+
+
 
 

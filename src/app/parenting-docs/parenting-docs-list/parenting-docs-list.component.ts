@@ -14,10 +14,8 @@ export class ParentingDocListComponent implements OnInit {
   constructor(private docService: ParentingDocService) {}
 
   ngOnInit(): void {
-    this.parentingDocs = this.docService.getParentingDocs();
-
-    this.docService.parentingDocChangedEvent.subscribe((docs: ParentingDoc[]) => {
-      this.parentingDocs = docs;
-    });
-  }
+   this.docService.getParentingDocs().subscribe((docs: ParentingDoc[]) => {
+  this.parentingDocs = docs;
+});
+}
 }

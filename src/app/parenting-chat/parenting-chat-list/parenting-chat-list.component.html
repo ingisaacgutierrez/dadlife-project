@@ -1,12 +1,13 @@
-<div class="panel panel-default" *ngFor="let chat of chats">
+<div class="panel panel-default mt-3" *ngFor="let chat of chats">
   <div class="panel-heading">
-    <strong>{{ chat.topic }}</strong> - {{ chat.sender }}
+    <strong>{{ chat.subject }}</strong> - {{ chat.sender }}
   </div>
   <div class="panel-body">
-    <p>{{ chat.message }}</p>
-    <button (click)="onDelete(chat.id)">Eliminar</button>
+    <p>{{ chat.msgText }}</p>
+    <button class="btn btn-danger btn-sm" (click)="onDelete(chat.id)">Eliminar</button>
   </div>
 </div>
+
 
 
 

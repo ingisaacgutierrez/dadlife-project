@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
-const parentingChatSchema = mongoose.Schema({
-    id: { type: String, required: true },
+const parentingChatSchema = new mongoose.Schema({
     subject: { type: String, required: true },
     msgText: { type: String, required: true },
-    sender: { type: mongoose.Schema.Types.ObjectId, ref: 'Contact' }
+    sender: { type: String, required: true },
 });
 
 module.exports = mongoose.model('ParentingChat', parentingChatSchema);
+
 

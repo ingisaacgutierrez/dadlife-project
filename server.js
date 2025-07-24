@@ -10,9 +10,10 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Rutas
-const parentingDocRoutes = require('./routes/parenting-doc');
-const parentingChatRoutes = require('./routes/parenting-chat');
-const professionalRoutes = require('./routes/professional');
+const parentingDocRoutes = require('./server/routes/parenting-doc');
+const parentingChatRoutes = require('./server/routes/parenting-chat');
+const professionalRoutes = require('./server/routes/professionals');
+
 
 app.use('/api/parenting-docs', parentingDocRoutes);
 app.use('/api/parenting-chats', parentingChatRoutes);

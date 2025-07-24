@@ -17,14 +17,14 @@ router.post('/', async (req, res) => {
 
 // PUT update a message
 router.put('/:id', async (req, res) => {
-    await ParentingChat.updateOne({ id: req.params.id }, req.body);
-    res.status(204).send();
+  await ParentingChat.updateOne({ id: req.params.id }, req.body);
+  res.status(204).send();
 });
 
 // DELETE a message
 router.delete('/:id', async (req, res) => {
-    await ParentingChat.deleteOne({ id: req.params.id });
-    res.status(204).send();
+  await ParentingChat.deleteOne({ id: req.params.id });
+  res.status(204).send();
 });
 
 module.exports = router;

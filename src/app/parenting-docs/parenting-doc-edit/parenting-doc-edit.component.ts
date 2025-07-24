@@ -13,16 +13,22 @@ export class ParentingDocEditComponent {
   constructor(private docService: ParentingDocService) {}
 
   onSubmit(form: NgForm) {
-    if (!form.valid) return;
+  if (!form.valid) return;
 
-    const newDoc = new ParentingDoc(
-      Math.random().toString(), // ID temporal
-      form.value.title,
-      form.value.description,
-      form.value.url
-    );
+  const newDoc = new ParentingDoc(
+    Math.random().toString(), // ID temporal
+    form.value.title,
+    form.value.description,
+    form.value.url
+  );
 
-    this.docService.addParentingDoc(newDoc);
-    form.reset();
-  }
-}
+  this.docService.addParentingDoc(newDoc).subscribe({
+    next: (response) => {
+      console.log('Consejo guardado correctamente:', response);
+      form.reset();
+    },
+    error: (err) => {
+      console.error('Error al guardar el consejo:', err);
+    }
+  });
+}}

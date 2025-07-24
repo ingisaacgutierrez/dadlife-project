@@ -7,20 +7,25 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ParentingChatService {
-  private baseUrl = 'http://localhost:3000/api/chats';
+  private apiUrl = 'http://localhost:3000/api/parenting-chats';
 
   constructor(private http: HttpClient) {}
 
   getChats(): Observable<ParentingChat[]> {
-    return this.http.get<ParentingChat[]>(this.baseUrl);
+    return this.http.get<ParentingChat[]>(this.apiUrl);
   }
 
   addChat(chat: ParentingChat): Observable<ParentingChat> {
-    return this.http.post<ParentingChat>(this.baseUrl, chat);
+    return this.http.post<ParentingChat>(this.apiUrl, chat);
   }
 
-  deleteChat(id: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${id}`);
+  updateChat(id: string, chat: ParentingChat): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/${id}`, chat);
+  }
+
+  deleteChat(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }
+
 
