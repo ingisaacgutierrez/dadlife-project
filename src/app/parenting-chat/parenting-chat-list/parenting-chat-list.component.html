@@ -1,16 +1,13 @@
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3>Parenting Chat</h3>
-    </div>
-    <div class="panel-body">
-        <dadlife-parenting-chat-edit (chatAdded)="onChatAdded($event)"></dadlife-parenting-chat-edit>
-
-        <dadlife-parenting-chat-item
-        *ngFor="let chat of chats"
-        [chat]="chat">
-        </dadlife-parenting-chat-item>
-    </div>
+<div class="panel panel-default" *ngFor="let chat of chats">
+  <div class="panel-heading">
+    <strong>{{ chat.topic }}</strong> - {{ chat.sender }}
+  </div>
+  <div class="panel-body">
+    <p>{{ chat.message }}</p>
+    <button (click)="onDelete(chat.id)">Eliminar</button>
+  </div>
 </div>
+
 
 
 

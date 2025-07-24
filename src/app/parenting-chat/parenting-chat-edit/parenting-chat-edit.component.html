@@ -1,21 +1,8 @@
-<div class="panel panel-default">
-    <div class="panel-heading">Nuevo Tema de Conversación</div>
-    <div class="panel-body">
-        <form #chatForm="ngForm" (ngSubmit)="onSubmit(chatForm)">
-        <div class="form-group">
-            <label for="topic">Tema</label>
-            <input type="text" id="topic" name="topic" class="form-control" ngModel required>
-        </div>
-        <div class="form-group">
-            <label for="description">Descripción</label>
-            <textarea id="description" name="description" class="form-control" ngModel required></textarea>
-        </div>
-        <div class="form-group">
-            <label for="creator">Nombre del Padre</label>
-            <input type="text" id="creator" name="creator" class="form-control" ngModel required>
-        </div>
-        <button class="btn btn-success" type="submit">Agregar Tema</button>
-        </form>
-    </div>
-</div>
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <input type="text" name="topic" ngModel placeholder="Tema">
+    <input type="text" name="sender" ngModel placeholder="Nombre del padre">
+    <textarea name="message" ngModel placeholder="Mensaje"></textarea>
+    <button type="submit">Agregar Mensaje</button>
+</form>
+
 

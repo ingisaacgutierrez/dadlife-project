@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ParentingChatService } from '../parenting-chat.service';
 import { ParentingChat } from '../parenting-chat.model';
 
 @Component({
@@ -8,20 +9,22 @@ import { ParentingChat } from '../parenting-chat.model';
   templateUrl: './parenting-chat-edit.component.html',
   styleUrl: './parenting-chat-edit.component.css'
 })
+
 export class ParentingChatEditComponent {
-  @Output() chatAdded = new EventEmitter<ParentingChat>();
+  constructor(private chatService: ParentingChatService) {}
 
   onSubmit(form: NgForm) {
     if (form.invalid) return;
 
     const newChat = new ParentingChat(
-      Math.random().toString(), // ID aleatorio temporal
+      new Date().getTime().toString(),
       form.value.topic,
-      form.value.description,
-      form.value.creator
+      form.value.message,
+      form.value.sender
     );
 
-    this.chatAdded.emit(newChat);
-    form.reset();
+    this.chatService.addChat(newChat).subscribe(() => {
+      form.resetForm();
+    });
   }
 }

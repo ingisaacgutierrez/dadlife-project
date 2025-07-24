@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ParentingChat } from '../parenting-chat.model';
+import { ParentingChatService } from '../parenting-chat.service';
 
 
 @Component({
@@ -8,15 +9,21 @@ import { ParentingChat } from '../parenting-chat.model';
   templateUrl: './parenting-chat-list.component.html',
   styleUrl: './parenting-chat-list.component.css'
 })
-export class ParentingChatListComponent {
-  chats: ParentingChat[] = [
-    new ParentingChat('1', 'Pataletas', '¿Cómo manejan las rabietas de sus hijos?', 'Carlos'),
-    new ParentingChat('2', 'Hora de dormir', 'Consejos para establecer una rutina nocturna efectiva', 'Luis')
-  ];
+export class ParentingChatListComponent implements OnInit {
+  chats: ParentingChat[] = [];
 
-  onChatAdded(newChat: ParentingChat) {
-  this.chats.push(newChat);
-}
+  constructor(private chatService: ParentingChatService) {}
 
+  ngOnInit() {
+    this.chatService.getChats().subscribe((data) => {
+      this.chats = data;
+    });
+  }
+
+  onDelete(id: string) {
+    this.chatService.deleteChat(id).subscribe(() => {
+      this.chats = this.chats.filter(chat => chat.id !== id);
+    });
+  }
 }
 
